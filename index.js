@@ -36,13 +36,14 @@ async function run() {
         const database = client.db('findMyRoomieDB');
         const listingsCollection = database.collection('listings');
 
-        app.post('/api/listings', async(req, res)=>{
+        // for add data to db
+        app.post('/api/listings', async (req, res) => {
             const doc = req.body;
             const result = await listingsCollection.insertOne(doc);
             res.send(result);
         })
-
-        app.get('/api/listings', async(req, res)=>{
+        // for get all listings
+        app.get('/api/listings', async (req, res) => {
             const cursor = listingsCollection.find();
             const result = await cursor.toArray();
             res.send(result);
