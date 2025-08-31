@@ -1,4 +1,4 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const express = require('express');
 const cors = require('cors');
 
@@ -55,6 +55,14 @@ async function run() {
             const query = { email: email };
             const cursor = listingsCollection.find(query);
             const result = await cursor.toArray();
+            res.send(result);
+        })
+
+        // for delete my listing particular data by id
+        app.delete('/api/listings/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const result = await listingsCollection.deleteOne(query);
             res.send(result);
         })
 
