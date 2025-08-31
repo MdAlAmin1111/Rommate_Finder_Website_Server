@@ -49,6 +49,15 @@ async function run() {
             res.send(result);
         })
 
+        //for finding my listing data
+        app.get('/api/listings/:email', async (req, res) => {
+            const email = req.params.email;
+            const query = { email: email };
+            const cursor = listingsCollection.find(query);
+            const result = await cursor.toArray();
+            res.send(result);
+        })
+
 
 
 
