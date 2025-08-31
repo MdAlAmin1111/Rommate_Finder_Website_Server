@@ -58,6 +58,26 @@ async function run() {
             res.send(result);
         })
 
+        // for find particular data by id 
+        app.get('/api/listings/id/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const result = await listingsCollection.findOne(query);
+            res.send(result);
+        })
+
+        // update a listing 
+
+        app.put('/api/listings/update/:id', async(req, res)=>{
+            const id = req.params.id;
+            const filter = {_id: new ObjectId(id)};
+            // const option= {upsert:true};
+            const toBeUpdatedData = req.body;
+            const updatedDoc = {$set: toBeUpdatedData};
+            const result = await listingsCollection.updateOne(filter, updatedDoc);
+            res.send(result);
+        })
+
         // for delete my listing particular data by id
         app.delete('/api/listings/:id', async (req, res) => {
             const id = req.params.id;
