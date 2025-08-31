@@ -67,13 +67,12 @@ async function run() {
         })
 
         // update a listing 
-
-        app.put('/api/listings/update/:id', async(req, res)=>{
+        app.put('/api/listings/update/:id', async (req, res) => {
             const id = req.params.id;
-            const filter = {_id: new ObjectId(id)};
+            const filter = { _id: new ObjectId(id) };
             // const option= {upsert:true};
             const toBeUpdatedData = req.body;
-            const updatedDoc = {$set: toBeUpdatedData};
+            const updatedDoc = { $set: toBeUpdatedData };
             const result = await listingsCollection.updateOne(filter, updatedDoc);
             res.send(result);
         })
