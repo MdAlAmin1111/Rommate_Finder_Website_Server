@@ -49,6 +49,16 @@ async function run() {
             res.send(result);
         })
 
+        // Get 6 featured roommate posts with availability = "Available"
+        app.get('/api/featured-roommates', async (req, res) => {
+            const query = { availability: "Available" };
+            const cursor = listingsCollection.find(query).limit(6);
+            const result = await cursor.toArray();
+            res.send(result);
+        });
+
+
+
         //for finding my listing data
         app.get('/api/listings/:email', async (req, res) => {
             const email = req.params.email;
@@ -77,7 +87,7 @@ async function run() {
             res.send(result);
         })
 
-        // for update likeCount field
+        // Update likeCount for listings via PATCH request
         app.patch('/api/listings/like/:id', async (req, res) => {
             const id = req.params.id;
             const filter = { _id: new ObjectId(id) };
