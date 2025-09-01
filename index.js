@@ -77,6 +77,21 @@ async function run() {
             res.send(result);
         })
 
+        // for update likeCount field
+        app.patch('/api/listings/like/:id', async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: new ObjectId(id) };
+            const { likeCount } = req.body;
+            const options = { upsert: true };
+            const updateDoc = {
+                $set: {
+                    likeCount: likeCount
+                }
+            };
+            const result = await listingsCollection.updateOne(filter, updateDoc, options);
+            res.send(result);
+        })
+
         // for delete my listing particular data by id
         app.delete('/api/listings/:id', async (req, res) => {
             const id = req.params.id;
