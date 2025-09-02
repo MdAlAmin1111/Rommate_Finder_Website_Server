@@ -7,8 +7,7 @@ It handles all backend operations like creating, reading, updating, and deleting
 
 ## 🌐 Live API Server
 
-🔗 Hosted on: [https://your-vercel-url.vercel.app](https://your-vercel-url.vercel.app)  
-_(Replace with your actual Vercel deployment URL)_
+🔗 Hosted on: [https://rommate-finder-website-server.vercel.app/](https://rommate-finder-website-server.vercel.app/)  
 
 ---
 
