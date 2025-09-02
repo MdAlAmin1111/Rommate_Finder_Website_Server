@@ -26,14 +26,11 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    // console.log(`Example app listening on port ${port}`)
 })
 
 async function run() {
     try {
-        // Connect the client to the server	(optional starting in v4.7)
-        await client.connect();
-
         const database = client.db('findMyRoomieDB');
         const listingsCollection = database.collection('listings');
 
@@ -57,7 +54,6 @@ async function run() {
             const result = await cursor.toArray();
             res.send(result);
         });
-
 
 
         //for finding my listing data
@@ -111,20 +107,9 @@ async function run() {
             res.send(result);
         })
 
-
-
-
-
-
-
-
-
-
-
-
         // Send a ping to confirm a successful connection
-        await client.db("admin").command({ ping: 1 });
-        console.log("Pinged your deployment. You successfully connected to MongoDB!");
+        // await client.db("admin").command({ ping: 1 });
+        // console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } finally {
         // Ensures that the client will close when you finish/error
         // await client.close();
